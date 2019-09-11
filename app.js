@@ -1,7 +1,6 @@
 document.querySelector('#loan-form').addEventListener('submit', calculateResults);
 //calculate results
 function calculateResults(e){
-    console.log('working...');
     //UI vars
     const amount = document.querySelector('#amount');
     const interest = document.querySelector('#years');
@@ -23,7 +22,21 @@ function calculateResults(e){
         totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = ((monthly * calculatedPayments) - principal).toFixed(2);
     }else{
-        console.log('Please Check Your Numbers');
+        showErrors('Please Check Your Numbers');
     }
     e.preventDefault();
+}
+
+//show errors
+function showErrors(error){
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'alert alert-danger';
+
+    //get elements
+    const card = document.querySelector('.card');
+    const heading = document.querySelector('.heading');
+
+    //create text node and append to div
+    errorDiv.appendChild(document.createTextNode(error));
+    card.insertBefore(errorDiv, heading);
 }
