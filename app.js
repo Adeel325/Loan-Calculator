@@ -39,4 +39,10 @@ function showErrors(error){
     //create text node and append to div
     errorDiv.appendChild(document.createTextNode(error));
     card.insertBefore(errorDiv, heading);
+
+    //clear error after 3 seconds
+    setTimeout(clearError, 3000);
+}
+function clearError(){
+    document.querySelector('.alert').remove();
 }
